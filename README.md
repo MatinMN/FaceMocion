@@ -1,3 +1,3 @@
 # FaceMocion
 Demo:
-https://github.com/oscaruhp/FaceMocion
+http://oscaruhp.github.io/FaceMocion/
