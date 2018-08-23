@@ -83,24 +83,29 @@
 			$('.' + NombreSelector).hover(function(e) {
 				SelectorEmocion = $(this);
 				var RatonX = e.pageX - 20;
-				var RatonY = e.pageY - 60;
+			    var RatonY = SelectorEmocion.offset().top;
 				$(".faceMocion").css({
 					top: RatonY,
 					left: RatonX
 				});
 				$(".faceMocion").show();
 			});
-			$(document).on("click", ".faceMocion div", function() {
+			$(document).off('click',".faceMocion div").one("click", ".faceMocion div", function() {
 
 				SelectorEmocion.attr("class", NombreSelector + " selectorFace  " + $(this).attr('class'));
 
 				ElInputSeleccionado = SelectorEmocion.attr("id-referencia");
-				$("." + ElInputSeleccionado).val($(this).attr('class'));
-
+				
+				var ReactionElement = $("." + ElInputSeleccionado)
+				var id = ReactionElement.val($(this).attr('class')).attr('id').substring(5);
+				var type = ReactionElement.attr('data-type');
+				
+                
 				if (typeof opciones.callback == "function") {
-					opciones.callback(this);
+					opciones.callback(id,$(this).attr('class'),type);
 				}
-
+                
+                $(".faceMocion").hide();
 
 			});
 			$(document).mouseup(function(e) {
